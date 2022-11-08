@@ -1,0 +1,9 @@
+**/test/**/*_js
+**/test/**/*_cpp
+**/test/**/*.r1cs
+**/test/**/*.sym
+**/test/**/*.zkey
+**/test/**/*.ptau
+**/test/**/*.wtns
+**/test/**/*.json
+!/**/test/**/input*
