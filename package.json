@@ -1,0 +1,22 @@
+{
+  "name": "learn-circom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaozhengxin/learn-circom.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gaozhengxin/learn-circom/issues"
+  },
+  "dependencies": {
+    "keccak256-circom": "git+https://github.com/vocdoni/keccak256-circom"
+  },
+  "homepage": "https://github.com/gaozhengxin/learn-circom#readme"
+}

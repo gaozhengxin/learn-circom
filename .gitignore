@@ -7,3 +7,4 @@
 **/test/**/*.wtns
 **/test/**/*.json
 !/**/test/**/input*
+**/node_modules
