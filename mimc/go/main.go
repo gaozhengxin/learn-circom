@@ -11,12 +11,13 @@ import (
 func main() {
 	input := make([]*big.Int, 0)
 	input = append(input, big.NewInt(1000))
+	input = append(input, big.NewInt(2000))
 
 	hash, _ := mimc7.Hash(input, nil)
 
 	args := struct {
 		In         []*big.Int `json:"in"`
-		Commitment string     `json:"commitment"`
+		Commitment string     `json:"hash"`
 	}{
 		In:         input,
 		Commitment: hash.String(),

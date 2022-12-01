@@ -4,15 +4,15 @@ include "../node_modules/circomlib/circuits/mimc.circom";
 
 template hash(N) {
     signal input in[N];
-    signal input commitment;
-    signal output hash;
+    signal input hash;
+    signal output hash_;
 
     component mimc = MultiMiMC7(N, 91);
 
     mimc.in <== in;
     mimc.k <== 0;
-    hash <== mimc.out;
-    commitment === hash;
+    hash_ <== mimc.out;
+    hash === hash_;
 }
 
-component main = hash(1);
+component main = hash(2);
