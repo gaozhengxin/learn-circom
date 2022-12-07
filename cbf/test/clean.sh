@@ -1,0 +1,1 @@
+rm -rf ./hash_cpp ./hash_js ./*.zkey ./hash_constraints.json ./*.r1cs ./*.ptau ./*.wtns ./*.sym ./proof.json ./public.json ./*_constraints.json ./verification_key.json

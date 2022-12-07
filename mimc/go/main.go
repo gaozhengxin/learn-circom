@@ -16,11 +16,11 @@ func main() {
 	hash, _ := mimc7.Hash(input, nil)
 
 	args := struct {
-		In         []*big.Int `json:"in"`
-		Commitment string     `json:"hash"`
+		In   []*big.Int `json:"in"`
+		Hash string     `json:"hash"`
 	}{
-		In:         input,
-		Commitment: hash.String(),
+		In:   input,
+		Hash: hash.String(),
 	}
 	argsJSON, err := json.Marshal(args)
 	if err != nil {
