@@ -22,3 +22,7 @@ echo "generate proof"
 snarkjs groth16 prove cbf_0001.zkey witness.wtns proof.json public.json
 # verify
 snarkjs groth16 verify verification_key.json public.json proof.json
+# generate solidity verifier
+snarkjs zkey export solidityverifier cbf_0001.zkey verifier.sol
+# general proof calldata
+snarkjs generatecall

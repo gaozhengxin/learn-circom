@@ -63,4 +63,4 @@ template cbfMultiAdd(N) {
     assertBits === bits;
 }
 
-component main = cbfMultiAdd(100);
+component main {public [assertBits]} = cbfMultiAdd(100);

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"math/big"
@@ -78,4 +79,10 @@ func main() {
 		fmt.Println(err)
 	}
 	fmt.Println(string(argsJSON))
+
+	bitsStr := ""
+	for _, n := range assertBits {
+		bitsStr += hex.EncodeToString([]byte{byte(n)})
+	}
+	fmt.Printf("bitsStr : %v\n", bitsStr)
 }
