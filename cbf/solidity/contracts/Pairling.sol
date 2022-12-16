@@ -138,11 +138,11 @@ library Pairing {
         assembly {
             success := staticcall(
                 sub(gas(), 2000),
-                8,
-                add(input, 0x20),
-                mul(inputSize, 0x20),
-                out,
-                0x20
+                8, // precompiled contract ecPairing
+                add(input, 0x20), // in
+                mul(inputSize, 0x20), // insize
+                out, // out
+                0x20 // outsize
             )
             // Use "invalid" to make gas estimation work
             switch success

@@ -16,7 +16,7 @@ pragma experimental ABIEncoderV2;
 
 import "./Pairling.sol";
 
-abstract contract PointStore {
+abstract contract Points {
     using Pairing for *;
 
     function getPoint(uint256 index)
@@ -41,18 +41,14 @@ contract Verifier {
         Pairing.G1Point C;
     }
 
-    PointStore[] verifyingKey_IC;
+    Points[] public verifyingKey_IC;
 
-    constructor(PointStore[] memory ICs) public {
+    constructor(Points[] memory ICs) public {
         verifyingKey_IC = ICs;
     }
 
-    function getIC(uint256 index)
-        internal
-        view
-        returns (Pairing.G1Point memory)
-    {
-        verifyingKey_IC[index / 128].getPoint(index);
+    function getIC(uint256 index) public view returns (Pairing.G1Point memory) {
+        return verifyingKey_IC[index / 128].getPoint(index);
     }
 
     function verifyingKey() internal pure returns (VerifyingKey memory vk) {
@@ -155,12 +151,12 @@ contract Verifier {
         }
     }
 
-    function verifyProof_bytes(
+    function verifyProof_string(
         uint256[2] memory a,
         uint256[2][2] memory b,
         uint256[2] memory c,
         string memory input
-    ) public view returns (bool r) {
+    ) public view returns (bool) {
         return verifyProof(a, b, c, stringToNumbers(input));
     }
 
@@ -169,7 +165,7 @@ contract Verifier {
         pure
         returns (uint8[1024] memory inputNumbers)
     {
-        require(bytes(input).length == 2048);
+        require(bytes(input).length == 2048, "input length is not 2048");
         for (uint256 i = 0; i < 1024; i++) {
             inputNumbers[i] =
                 (uint8(bytes(input)[2 * i]) - 48) *
