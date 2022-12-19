@@ -3,17 +3,15 @@ pragma circom 2.1.0;
 
 include "../node_modules/circomlib/circuits/mimc.circom";
 
-template hashPair() {
+template hashLeftRight() {
     signal input in[2];
-    signal input hash;
-    signal output hash_;
+    signal output hash;
 
     component mimc = MultiMiMC7(2, 91);
 
     mimc.in <== in;
     mimc.k <== 0;
-    hash_ <== mimc.out;
-    hash === hash_;
+    hash <== mimc.out;
 }
 
 // if s == 0 returns [in[0], in[1]]
@@ -44,12 +42,15 @@ template verifyOne(levels) {
         selectors[i].in[1] <== pathElements[i];
         selectors[i].s <== pathIndices[i];
 
-        hashers[i] = hashPair();
+        hashers[i] = hashLeftRight();
         hashers[i].in[0] <== selectors[i].out[0];
         hashers[i].in[1] <== selectors[i].out[1];
     }
 
     root <== hashers[levels - 1].hash;
+    // 运行 witness, root 就会算出来, 然后生成证明, root 会作为 public input 输出出来
+    // 到时候要把 public input 传入 verifier 合约
+    // verifier 合约必须把 root 跟真实 root 对比
 }
 
-//component main = hash(2);
+component main = verifyOne(7); // 7 层正好
